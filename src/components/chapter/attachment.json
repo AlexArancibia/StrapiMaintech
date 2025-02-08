@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_chapter_attachments",
+  "info": {
+    "displayName": "Attachment"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    }
+  }
+}

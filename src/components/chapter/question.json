@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_chapter_questions",
+  "info": {
+    "displayName": "question",
+    "icon": "write"
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "string"
+    },
+    "answer": {
+      "displayName": "Answer",
+      "type": "component",
+      "repeatable": true,
+      "component": "chapter.answer"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_chapter_quizzes",
+  "info": {
+    "displayName": "Quiz"
+  },
+  "options": {},
+  "attributes": {
+    "question": {
+      "type": "component",
+      "repeatable": true,
+      "component": "chapter.question"
+    }
+  }
+}

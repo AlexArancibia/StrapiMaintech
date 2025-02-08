@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_chapter_answers",
+  "info": {
+    "displayName": "Answer"
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "string"
+    },
+    "isCorrect": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

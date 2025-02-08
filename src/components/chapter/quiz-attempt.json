@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_chapter_quiz_attempts",
+  "info": {
+    "displayName": "QuizAttempt",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "attempt": {
+      "type": "integer"
+    },
+    "qualification": {
+      "type": "decimal"
+    },
+    "approved": {
+      "type": "boolean"
+    }
+  }
+}
