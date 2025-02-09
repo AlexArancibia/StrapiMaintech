@@ -4,7 +4,8 @@
   "info": {
     "singularName": "course",
     "pluralName": "courses",
-    "displayName": "Course"
+    "displayName": "Course",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -34,16 +35,13 @@
       "target": "api::category.category",
       "inversedBy": "courses"
     },
-    "modality": {
-      "type": "string"
-    },
     "image": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "users_permissions_users": {
       "type": "relation",
@@ -73,6 +71,20 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::chapter.chapter",
+      "mappedBy": "course"
+    },
+    "modality": {
+      "type": "enumeration",
+      "enum": [
+        "Presencial",
+        "Mixto",
+        "Virtual"
+      ]
+    },
+    "certificates": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::certificate.certificate",
       "mappedBy": "course"
     }
   }

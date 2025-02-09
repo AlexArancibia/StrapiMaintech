@@ -401,6 +401,38 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCertificateCertificate extends Struct.CollectionTypeSchema {
+  collectionName: 'certificates';
+  info: {
+    displayName: 'Certificate';
+    pluralName: 'certificates';
+    singularName: 'certificate';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    course: Schema.Attribute.Relation<'manyToOne', 'api::course.course'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::certificate.certificate'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiChapterChapter extends Struct.CollectionTypeSchema {
   collectionName: 'chapters';
   info: {
@@ -451,6 +483,7 @@ export interface ApiChapterChapter extends Struct.CollectionTypeSchema {
 export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
   collectionName: 'courses';
   info: {
+    description: '';
     displayName: 'Course';
     pluralName: 'courses';
     singularName: 'course';
@@ -460,6 +493,10 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
   };
   attributes: {
     category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
+    certificates: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::certificate.certificate'
+    >;
     chapters: Schema.Attribute.Relation<'oneToMany', 'api::chapter.chapter'>;
     content: Schema.Attribute.Blocks & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
@@ -474,7 +511,7 @@ export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
       'api::course.course'
     > &
       Schema.Attribute.Private;
-    modality: Schema.Attribute.String;
+    modality: Schema.Attribute.Enumeration<['Presencial', 'Mixto', 'Virtual']>;
     price: Schema.Attribute.Decimal & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     start_date: Schema.Attribute.Date & Schema.Attribute.Required;
@@ -533,6 +570,7 @@ export interface ApiUserProgressUserProgress
   extends Struct.CollectionTypeSchema {
   collectionName: 'user_progresses';
   info: {
+    description: '';
     displayName: 'UserProgress';
     pluralName: 'user-progresses';
     singularName: 'user-progress';
@@ -553,7 +591,7 @@ export interface ApiUserProgressUserProgress
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    quiz_attempt: Schema.Attribute.Component<'chapter.quiz-attempt', false>;
+    quiz_attempt: Schema.Attribute.Component<'chapter.quiz-attempt', true>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1023,6 +1061,10 @@ export interface PluginUsersPermissionsUser
   };
   attributes: {
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    certificates: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::certificate.certificate'
+    >;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     courses: Schema.Attribute.Relation<'manyToMany', 'api::course.course'>;
@@ -1079,6 +1121,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::category.category': ApiCategoryCategory;
+      'api::certificate.certificate': ApiCertificateCertificate;
       'api::chapter.chapter': ApiChapterChapter;
       'api::course.course': ApiCourseCourse;
       'api::teacher.teacher': ApiTeacherTeacher;

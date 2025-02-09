@@ -4,7 +4,8 @@
   "info": {
     "singularName": "user-progress",
     "pluralName": "user-progresses",
-    "displayName": "UserProgress"
+    "displayName": "UserProgress",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -29,7 +30,7 @@
     "quiz_attempt": {
       "displayName": "QuizAttempt",
       "type": "component",
-      "repeatable": false,
+      "repeatable": true,
       "component": "chapter.quiz-attempt"
     }
   }
