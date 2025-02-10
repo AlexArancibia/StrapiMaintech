@@ -9,7 +9,7 @@
     "displayName": "User"
   },
   "options": {
-    "timestamps": true
+    "draftAndPublish": false
   },
   "attributes": {
     "username": {
@@ -82,6 +82,10 @@
       "relation": "oneToMany",
       "target": "api::certificate.certificate",
       "mappedBy": "users_permissions_user"
+    },
+    "isTeacher": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
